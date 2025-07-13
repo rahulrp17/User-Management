@@ -14,7 +14,7 @@ const ViewUser = () => {
 
   const loadUser = async () => {
     try {
-      const res = await axios.get(`http://localhost:4040/user/${id}`);
+      const res = await axios.get(`https://user-management-232q.onrender.com/user/${id}`);
       setUser(res.data);
       setLoading(false);
     } catch (err) {
