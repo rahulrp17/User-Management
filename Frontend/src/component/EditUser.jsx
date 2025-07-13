@@ -38,7 +38,7 @@ const EditUser = () => {
       return;
     }
     try {
-      await axios.put(`http://localhost:4040/user/${id}`, user);
+      await axios.put(`https://user-management-232q.onrender.com/user/${id}`, user);
       toast.success("User updated successfully");
       navigate("/");
     } catch (error) {
