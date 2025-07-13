@@ -21,7 +21,7 @@ const AddUser = () => {
       return;
     }
     try {
-      await axios.post("http://localhost:4040/user", user);
+      await axios.post("https://user-management-232q.onrender.com/user", user);
       toast.success("User added successfully");
       navigate("/");
     } catch (error) {
