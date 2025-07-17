@@ -15,14 +15,14 @@ const Home = () => {
 
   const loadUsers = async () => {
     try {
+      setLoading(true)
       const res = await axios.get("https://user-management-232q.onrender.com/users");
       setUsers(res.data);
+      setLoading(false)
     } catch (error) {
       console.error("Error fetching users:", error);
       toast.error("Failed to load users");
-    } finally {
-      setLoading(false); 
-    }
+    } 
   };
 
   const deleteUser = async (id) => {
@@ -32,6 +32,7 @@ const Home = () => {
       await axios.delete(`https://user-management-232q.onrender.com/${id}`);
       toast.success("User deleted successfully");
       loadUsers();
+      setLoading(false);
     } catch (error) {
       console.error("Error deleting user:", error);
       toast.error("Failed to delete user");
