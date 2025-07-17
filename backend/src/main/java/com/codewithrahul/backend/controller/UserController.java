@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 // @CrossOrigin("https://user-management-2-l8v9.onrender.com")
- @CrossOrigin("https://user-management-b1t0eqr7x-r-rahuls-projects.vercel.app")
+ @CrossOrigin("https://user-management-phi-roan.vercel.app")
     
 public class UserController {
     @Autowired
