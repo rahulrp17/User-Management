@@ -15,7 +15,7 @@ const Home = () => {
 
   const loadUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:4040/users");
+      const res = await axios.get("https://user-management-232q.onrender.com/users");
       setUsers(res.data);
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -29,7 +29,7 @@ const Home = () => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
     try {
       setLoading(true);
-      await axios.delete(`http://localhost:4040/user/${id}`);
+      await axios.delete(`https://user-management-232q.onrender.com/${id}`);
       toast.success("User deleted successfully");
       loadUsers();
     } catch (error) {
