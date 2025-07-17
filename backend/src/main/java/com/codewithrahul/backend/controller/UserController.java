@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("https://user-management-2-l8v9.onrender.com")
+// @CrossOrigin("https://user-management-2-l8v9.onrender.com")
+ @CrossOrigin("https://vercel.com/r-rahuls-projects/user-management/B8kHYqjHhnFeEPPejmVq41Fz76vN")
+    
 public class UserController {
     @Autowired
     private UserRepo userRepo;
