@@ -29,7 +29,7 @@ const Home = () => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
     try {
       setLoading(true);
-      await axios.delete(`https://user-management-232q.onrender.com/${id}`);
+      await axios.delete(`https://user-management-232q.onrender.com/user/${id}`);
       toast.success("User deleted successfully");
       loadUsers();
       setLoading(false);
