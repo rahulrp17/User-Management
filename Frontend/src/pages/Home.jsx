@@ -43,7 +43,8 @@ const Home = () => {
     return (
       <div className="container flex flex-col items-center justify-center text-center mt-5">
         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500" role="status"></div>
-        <p className="mt-2">Loading user details...</p>
+        <p className="mt-2">Loading Users...</p>
+        <p className="mt-2">Wait a Minute</p>
       </div>
     );
   }
