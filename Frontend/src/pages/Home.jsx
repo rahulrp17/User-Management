@@ -5,6 +5,9 @@ import { toast } from "react-toastify";
 
 const Home = () => {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
+ 
 
   useEffect(() => {
     loadUsers();
@@ -12,18 +15,21 @@ const Home = () => {
 
   const loadUsers = async () => {
     try {
-      const res = await axios.get("https://user-management-232q.onrender.com/users");
+      const res = await axios.get("http://localhost:4040/users");
       setUsers(res.data);
     } catch (error) {
       console.error("Error fetching users:", error);
       toast.error("Failed to load users");
+    } finally {
+      setLoading(false); 
     }
   };
 
   const deleteUser = async (id) => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
     try {
-      await axios.delete(`https://user-management-232q.onrender.com/user/${id}`);
+      setLoading(true);
+      await axios.delete(`http://localhost:4040/user/${id}`);
       toast.success("User deleted successfully");
       loadUsers();
     } catch (error) {
@@ -31,6 +37,15 @@ const Home = () => {
       toast.error("Failed to delete user");
     }
   };
+
+  if (loading) {
+    return (
+      <div className="container flex flex-col items-center justify-center text-center mt-5">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500" role="status"></div>
+        <p className="mt-2">Loading user details...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="container py-4">
