@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 const AddUser = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({ name: "", username: "", email: "" });
-
+  const [loading, setLoading] = useState(false);
   const { name, username, email } = user;
 
   const onInputChange = (e) => {
@@ -21,6 +21,7 @@ const AddUser = () => {
       return;
     }
     try {
+      setLoading(true);
       await axios.post("https://user-management-232q.onrender.com/user", user);
       toast.success("User added successfully");
       navigate("/");
@@ -38,7 +39,7 @@ const AddUser = () => {
   return (
     <div className="add-user container d-flex justify-content-center align-items-center position-relative top-30">
       <div className="row w-100">
-        <div className="col-12 col-md-8 col-lg-6 mx-auto">
+        <div className="col-12 col-md-8 col-lg-6 mx-auto col">
           <div className="border rounded p-4 shadow bg-white">
             <h2 className="text-center mb-4">Register User</h2>
             <form onSubmit={onSubmit} onReset={onCancel}>
@@ -82,7 +83,7 @@ const AddUser = () => {
                 />
               </div>
               <div className="d-flex justify-content-center gap-2 mt-4">
-                <button className="btn btn-primary" type="submit">Submit</button>
+                <button className="btn btn-primary"  type="submit">{loading ? "Submitting..." : "Submit"}</button>
                 <button className="btn btn-outline-danger" type="reset">Cancel</button>
               </div>
             </form>
