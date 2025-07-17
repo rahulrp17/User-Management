@@ -18,6 +18,7 @@ const EditUser = () => {
 
   const loadUser = async () => {
     try {
+      setLoading(true);
       const result = await axios.get(`https://user-management-232q.onrender.com/user/${id}`);
       setUser(result.data);
       setLoading(false);
@@ -26,6 +27,14 @@ const EditUser = () => {
       setLoading(false);
     }
   };
+  if(loading){
+    return (
+      <div className="container flex flex-col items-center justify-center text-center mt-5">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500" role="status"></div>
+        <p className="mt-2">Loading user details...</p>
+      </div>
+    );
+  }
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -38,7 +47,7 @@ const EditUser = () => {
       return;
     }
     try {
-      await axios.put(`https://user-management-232q.onrender.com/user/${id}`, user);
+      await axios.put(`http://localhost:4040/user/${id}`, user);
       toast.success("User updated successfully");
       navigate("/");
     } catch (error) {
@@ -105,7 +114,7 @@ const EditUser = () => {
               />
             </div>
             <div className="d-flex justify-content-center mt-4 gap-2">
-              <button className="btn btn-primary" type="submit">Update</button>
+              <button className="btn btn-primary" type="submit">{loading ? "Updating..." : "Update"}</button>
               <button className="btn btn-outline-danger" type="reset">Cancel</button>
             </div>
           </form>
